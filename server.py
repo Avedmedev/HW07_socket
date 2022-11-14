@@ -16,16 +16,16 @@ def main():
                 while True:
                     message_from_client = conn.recv(256).decode()
                     if message_from_client:
-                        print(f"Отримано сповіщення від клієнта {message_from_client}")
+                        print(f"Отримано сповіщення від клієнта {address}: {message_from_client}")
                         conn.send("OK".encode())
                         break
             except KeyboardInterrupt:
-                print("Server destroyed")
+                print('Connection destroyed')
             finally:
+                print(f'Connection {address} closed')
                 conn.close()
-
     except KeyboardInterrupt:
-        print("Server destroyed")
+        print('Server destroyed')
     finally:
         server_socket.close()
 
